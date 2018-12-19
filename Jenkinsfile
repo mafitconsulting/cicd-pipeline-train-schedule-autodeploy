@@ -95,10 +95,10 @@ pipeline {
     }
 
 }
-def httpRequestRes(worker.trim()) {
+def httpRequestRes(worker) {
       response = httpRequest (
           url: "http://$worker:8082/",
           timeout: 30
       )
-      return reponse
+      return reponse.trim()
 }
