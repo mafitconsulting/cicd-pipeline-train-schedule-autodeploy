@@ -60,7 +60,7 @@ pipeline {
             steps {
                 script {
                     sleep (time: 5)
-                    def response = httpRequestRes("$WORKER_1")
+                    def response = httpRequestRes("$WORKER_1").trim()
                     if (response.status != 200) {
                         response = httpRequestRes("$WORKER_2")
                         if (response.status != 200) {
@@ -100,5 +100,5 @@ def httpRequestRes(worker) {
           url: "http://$worker:8082/",
           timeout: 30
       )
-      return reponse.trim()
+      return response.trim()
 }
