@@ -70,7 +70,7 @@ pipeline {
                     response = httpRequestRes($WORKER_1)
                     if (response.status != 200) {
                         response = httpRequestRes($WORKER_2)
-                        if response.status != 200 {
+                        if (response.status != 200) {
                             error("Smoke test against canary deployment failed.")
                         }
                     }
