@@ -84,13 +84,6 @@ pipeline {
             }
         }
     }
-    def httpRequestRes(worker) {
-            response = httpRequest (
-                url: "http://$worker:8082/",
-                timeout: 30
-            )
-            return reponse
-    }
     post {       
         cleanup {
             kubernetesDeploy(
@@ -101,4 +94,11 @@ pipeline {
         }
     }
 
+}
+def httpRequestRes(worker) {
+      response = httpRequest (
+          url: "http://$worker:8082/",
+          timeout: 30
+      )
+      return reponse
 }
