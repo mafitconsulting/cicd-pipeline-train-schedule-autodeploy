@@ -100,5 +100,5 @@ def httpRequestRes(worker) {
           url: "http://$worker:8082/",
           timeout: 30
       )
-      return response.trim()
+      return response
 }
