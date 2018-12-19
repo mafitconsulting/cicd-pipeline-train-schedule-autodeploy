@@ -60,7 +60,7 @@ pipeline {
             steps {
                 script {
                     sleep (time: 5)
-                    response = httpRequestRes($WORKER_1)
+                    def response = httpRequestRes($WORKER_1)
                     if (response.status != 200) {
                         response = httpRequestRes($WORKER_2)
                         if (response.status != 200) {
