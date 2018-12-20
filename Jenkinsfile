@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             when {
-                branch 'master'
+                branch 'feature/la_lab_branch'
             }
             steps {
                 script {
@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Push Docker Image') {
             when {
-                branch 'master'
+                branch 'feature/la_lab_branch'
             }
             steps {
                 script {
@@ -40,7 +40,7 @@ pipeline {
         }
         stage('CanaryDeploy') {
             when {
-                branch 'master'
+                branch 'feature/la_lab_branch'
             }
             environment { 
                 CANARY_REPLICAS = 1
@@ -55,7 +55,7 @@ pipeline {
         }
         stage('SmokeTest') {
             when {
-                branch 'master'
+                branch 'la_lab_branch'
             }
             steps {
                 script {
@@ -72,7 +72,7 @@ pipeline {
         }
         stage('DeployToProduction') {
             when {
-                branch 'master'
+                branch 'feature/la_lab_branch'
             }
             steps {
                 milestone(1)
@@ -98,7 +98,7 @@ pipeline {
 def httpRequestRes(worker) {
       node = worker.trim()
       response = httpRequest (
-          url: "http://$node:8082/",
+          url: "http://$node:8081/",
           timeout: 30
       )
       return response
